@@ -1,4 +1,4 @@
-const { getInitials } = require('./tests')
+const { getInitials, createSlug } = require('./tests')
 
 /* Snack 1
 Creare un test che verifichi la seguente descrizione:
@@ -15,3 +15,9 @@ test('La funzione getInitials restituisce le iniziali di un nome completo.', () 
 Creare un test che verifichi la seguente descrizione:
 "La funzione createSlug restituisce una stringa in lowercase."
 */
+
+test('La funzione createSlug restituisce una stringa in lowercase', () => {
+    expect(createSlug('Giorgio')).toBe('giorgio')
+    expect(createSlug('Hello World')).toBe('hello world')
+})
+
