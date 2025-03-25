@@ -1,4 +1,7 @@
-const { getInitials, createSlug, average } = require('./tests')
+const { getInitials,
+    createSlug,
+    average
+} = require('./tests')
 
 /* Snack 1
 Creare un test che verifichi la seguente descrizione:
@@ -8,6 +11,7 @@ Creare un test che verifichi la seguente descrizione:
 test('La funzione getInitials restituisce le iniziali di un nome completo.', () => {
     expect(getInitials('Mario Rossi')).toBe('MR')
     expect(getInitials('chiara poli')).toBe('CP')
+    expect(getInitials('vincenzo  glionna')).toBe('VG')
 })
 
 
@@ -18,7 +22,7 @@ Creare un test che verifichi la seguente descrizione:
 
 test('La funzione createSlug restituisce una stringa in lowercase', () => {
     expect(createSlug('Giorgio')).toBe('giorgio')
-    expect(createSlug('Hello World')).toBe('hello world')
+    expect(createSlug('Hello World')).toBe('hello-world')
 })
 
 
@@ -29,6 +33,18 @@ Creare un test che verifichi la seguente descrizione:
 
 test('La funzione average calcola la media aritmetica di un array di numeri', () => {
     expect(average([1, 2, 3, 4, 5])).toBe(3)
-    expect(average([5, 10, 5, 4, 16])).toBe(8)
+    expect(average([-1, 0, 1])).toBe(0)
+    expect(() => average([2, 3, 'stringa'])).toThrow()
+    expect(() => average([])).toThrow()
 })
 
+
+/* Snack 4
+Creare un test che verifichi la seguente descrizione:
+"La funzione createSlug sostituisce gli spazi con -."
+Esempio: createSlug("Questo è un test") → "questo-è-un-test"
+*/
+
+test('La funzione createSlug sostituisce gli spazi con -', () => {
+    expect(createSlug('Questo è un test')).toBe('questo-è-un-test')
+})
