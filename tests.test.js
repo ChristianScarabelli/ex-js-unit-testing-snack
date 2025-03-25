@@ -77,11 +77,18 @@ describe('Funzione findPostById', () => {
 
 describe('Funzioni di aggiunta ed eliminazione post', () => {
     test('La funzione addPost aggiunge un post all\'array di post', () => {
-        const newPost = { id: 4, title: 'Post 4', slug: 'post-4' };
+        const newPost = { id: 4, title: 'Post 4', slug: 'post-4' }
         addPost(posts, newPost)
 
         expect(posts).toHaveLength(4)   // lunghezza dell'array  aumentata di 1
         expect(posts).toContainEqual(newPost)   // nuovo post presente nell'array
+
+        const slugPost = { id: 5, title: 'Post 5', slug: 'post-4' }
+        const idPost = { id: 4, title: 'Post 4', slug: 'post-5' }
+
+        expect(() => addPost(posts, slugPost)).toThrow('Slug già esistente')
+        expect(() => addPost(posts, idPost)).toThrow('Id già esistente')
+
     })
     test('La funzione deletePost elimina un post dall\'array di post', () => {
         deletePost(posts, 2)

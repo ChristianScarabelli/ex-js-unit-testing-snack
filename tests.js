@@ -56,6 +56,15 @@ function findPostById(posts, id) {
 // Snack 08 Bonus
 
 function addPost(array, newPost) {
+
+    if (array.some(post => post.slug === newPost.slug)) {
+        throw new Error('Slug già esistente')
+    }
+
+    if (array.some(post => post.id === newPost.id)) {
+        throw new Error('Id già esistente')
+    }
+
     array.push(newPost)
 }
 
