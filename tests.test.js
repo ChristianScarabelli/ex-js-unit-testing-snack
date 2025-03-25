@@ -1,7 +1,8 @@
 const { getInitials,
     createSlug,
     average,
-    isPalindrome
+    isPalindrome,
+    findPostById
 } = require('./tests')
 
 /* Snack 1
@@ -72,3 +73,25 @@ test('La funzione createSlug lancia un errore se il titolo è vuoto o non valido
     expect(() => createSlug(123)).toThrow()
     expect(() => createSlug(null)).toThrow()
 })
+
+/* Snack 7
+Crea un array di oggetti posts, in cui ogni oggetto ha le proprietà id, title e slug.
+Creare un test che verifichi le seguenti descrizioni:
+"La funzione findPostById restituisce il post corretto dato l’array di post e l’id"
+Creare uno o più test aggiuntivi che controllino che la struttura dati passati sia conforme (ogni post ha le proprietà id, title e slug, viene passato un id numerico).
+*/
+
+const posts = [
+    { id: 1, title: 'Post 1', slug: 'post-1' },
+    { id: 2, title: 'Post 2', slug: 'post-2' },
+    { id: 3, title: 'Post 3', slug: 'post-3' },
+]
+
+test('La funzione findPostById restituisce il post corretto dato l’array di post e l’id', () => {
+    expect(findPostById(posts, 1)).toEqual({ id: 1, title: 'Post 1', slug: 'post-1' })
+    expect(findPostById(posts, 4)).toBe(null)
+    expect(() => findPostById(posts, '2')).toThrow('Invalid ID')
+    expect(() => findPostById([1, 2, 3, 4], 3)).toThrow('Post structure is not valid')
+})
+
+

@@ -31,10 +31,32 @@ function isPalindrome(str) {
     return str.toLowerCase().trim() === str.toLowerCase().trim().split('').reverse().join('')
 }
 
+// Snack 07
+function findPostById(posts, id) {
+    if (!Array.isArray(posts)) {
+        throw new Error('Invalid Posts array')
+    }
+
+    if (typeof id !== 'number') {
+        throw new Error('Invalid ID')
+    }
+
+    posts.forEach(post => {
+        if (typeof post !== 'object' ||
+            post.id === undefined ||
+            post.title === undefined ||
+            post.slug === undefined) {
+            throw new Error('Post structure is not valid')
+        }
+    })
+
+    return posts.find(post => post.id === id) || null
+}
 
 module.exports = {
     getInitials,
     createSlug,
     average,
-    isPalindrome
+    isPalindrome,
+    findPostById
 }
