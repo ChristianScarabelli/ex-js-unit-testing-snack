@@ -2,7 +2,9 @@ const { getInitials,
     createSlug,
     average,
     isPalindrome,
-    findPostById
+    findPostById,
+    addPost,
+    deletePost
 } = require('./tests')
 
 
@@ -49,12 +51,19 @@ describe('Funzione isPalindrome', () => {
     })
 })
 
+let posts
 
-const posts = [
-    { id: 1, title: 'Post 1', slug: 'post-1' },
-    { id: 2, title: 'Post 2', slug: 'post-2' },
-    { id: 3, title: 'Post 3', slug: 'post-3' },
-]
+beforeEach(() => {
+    posts = [
+        { id: 1, title: 'Post 1', slug: 'post-1' },
+        { id: 2, title: 'Post 2', slug: 'post-2' },
+        { id: 3, title: 'Post 3', slug: 'post-3' },
+    ]
+})
+
+afterEach(() => {
+    posts = []
+})
 
 describe('Funzione findPostById', () => {
     test('La funzione findPostById restituisce il post corretto dato l’array di post e l’id', () => {
@@ -64,5 +73,23 @@ describe('Funzione findPostById', () => {
         expect(() => findPostById([1, 2, 3, 4], 3)).toThrow('Post structure is not valid')
     })
 })
+
+
+describe('Funzioni di aggiunta ed eliminazione post', () => {
+    test('La funzione addPost aggiunge un post all\'array di post', () => {
+        const newPost = { id: 4, title: 'Post 4', slug: 'post-4' };
+        addPost(posts, newPost)
+
+        expect(posts).toHaveLength(4)   // lunghezza dell'array  aumentata di 1
+        expect(posts).toContainEqual(newPost)   // nuovo post presente nell'array
+    })
+    test('La funzione deletePost elimina un post dall\'array di post', () => {
+        deletePost(posts, 2)
+
+        expect(posts).toHaveLength(2)   // lunghezza dell'array diminuita di 1
+        expect(posts.find(post => post.id === 2)).toBeUndefined()   // post non più presente nell'array
+    })
+})
+
 
 

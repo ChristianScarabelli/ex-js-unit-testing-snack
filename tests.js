@@ -53,10 +53,26 @@ function findPostById(posts, id) {
     return posts.find(post => post.id === id) || null
 }
 
+// Snack 08 Bonus
+
+function addPost(array, newPost) {
+    array.push(newPost)
+}
+
+function deletePost(array, postId) {
+    const index = array.findIndex(post => post.id === postId)
+    if (index !== -1) {
+        array.splice(index, 1)
+    }
+}
+
+
 module.exports = {
     getInitials,
     createSlug,
     average,
     isPalindrome,
-    findPostById
+    findPostById,
+    addPost,
+    deletePost
 }
