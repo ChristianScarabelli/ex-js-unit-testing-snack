@@ -23,9 +23,15 @@ function average(array) {
     return array.reduce((acc, num) => acc + num, 0) / array.length
 }
 
+// Snack 05
+function isPalindrome(str) {
+    return str.toLowerCase() === str.toLowerCase().split('').reverse().join('')
+}
+
 
 module.exports = {
     getInitials,
     createSlug,
-    average
+    average,
+    isPalindrome
 }
