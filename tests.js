@@ -4,8 +4,11 @@ function getInitials(fullName) {
     return words.map(word => word[0].toUpperCase()).join('')
 }
 
-// Snack 02 ,  Snack 04
+// Snack 02 ,  Snack 04 , Snack 06
 function createSlug(string) {
+    if (!string || typeof string !== 'string') {
+        throw new Error('Titolo non valido')
+    }
     return string.toLowerCase().replaceAll(' ', '-')
 }
 
@@ -25,7 +28,7 @@ function average(array) {
 
 // Snack 05
 function isPalindrome(str) {
-    return str.toLowerCase() === str.toLowerCase().split('').reverse().join('')
+    return str.toLowerCase().trim() === str.toLowerCase().trim().split('').reverse().join('')
 }
 
 

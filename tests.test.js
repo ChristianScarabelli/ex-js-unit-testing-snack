@@ -43,7 +43,6 @@ test('La funzione average calcola la media aritmetica di un array di numeri', ()
 /* Snack 4
 Creare un test che verifichi la seguente descrizione:
 "La funzione createSlug sostituisce gli spazi con -."
-Esempio: createSlug("Questo è un test") → "questo-è-un-test"
 */
 
 test('La funzione createSlug sostituisce gli spazi con -', () => {
@@ -57,8 +56,19 @@ Creare un test che verifichi la seguente descrizione:
 */
 
 test('La funzione isPalindrome verifica se una stringa è un palindromo', () => {
-    expect(isPalindrome('racecar')).toBe(true)
-    expect(isPalindrome('Radar')).toBe(true)
-    expect(isPalindrome('hello')).toBe(false)
+    expect(isPalindrome('racecar')).toBeTruthy()
+    expect(isPalindrome(' Radar')).toBeTruthy()
+    expect(isPalindrome('hello')).toBeFalsy()
 })
 
+
+/* Snack 6
+Creare un test che verifichi la seguente descrizione:
+"La funzione createSlug lancia un errore se il titolo è vuoto o non valido."
+*/
+
+test('La funzione createSlug lancia un errore se il titolo è vuoto o non valido', () => {
+    expect(() => createSlug('')).toThrow()
+    expect(() => createSlug(123)).toThrow()
+    expect(() => createSlug(null)).toThrow()
+})
